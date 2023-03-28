@@ -4,7 +4,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     private float _speed = 3.0f;
-    private bool _directionChanged;
+    private bool _directionChanged = true;
 
     private void Start()
     {

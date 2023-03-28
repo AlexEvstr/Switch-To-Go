@@ -7,30 +7,34 @@ using UnityEngine.UI;
 
 public class Detector : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private Text _scoreText;
+    [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _startPanel;
     private float _score;
     public RaycastHit2D hit;
 
     private void Start()
     {
         _score = 0;
+        Time.timeScale = 0;
     }
 
     private void Update()
     {
         hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0);
-
-        if (hit.collider != null && hit.collider.tag == "Road")
+        if (!_startPanel.activeInHierarchy)
         {
-            _score++;
-            _scoreText.text = _score.ToString();
+            if (hit.collider != null && hit.collider.tag == "Road")
+            {
+                _score++;
+                _scoreText.text = _score.ToString();
 
-        }
-        else
-        {
-            _gameOverPanel.SetActive(true);
-            Time.timeScale = 0;
+            }
+            else
+            {
+                _gameOverPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 }
