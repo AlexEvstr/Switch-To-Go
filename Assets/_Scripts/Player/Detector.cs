@@ -26,7 +26,7 @@ public class Detector : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.tag == "Road")
             {
-                _score++;
+                _score++; ;
                 _scoreText.text = _score.ToString();
 
             }
